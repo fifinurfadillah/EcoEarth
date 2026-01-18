@@ -1,6 +1,6 @@
 # EcoEarth
 
-**EcoEarth** adalah aplikasi cerdas berbasis AI untuk mendeteksi dan mengklasifikasikan jenis sampah (Organik, Anorganik, Non-Human) secara realtime menggunakan kamera. Proyek ini bertujuan untuk memudahkan proses pemilahan sampah demi lingkungan yang lebih bersih.
+**EcoEarth** adalah aplikasi cerdas berbasis AI untuk mendeteksi dan mengklasifikasikan jenis sampah (Organik, Anorganik, Non-Trash) secara realtime menggunakan kamera. Proyek ini bertujuan untuk memudahkan proses pemilahan sampah demi lingkungan yang lebih bersih.
 
 ## Fitur Utama
 
