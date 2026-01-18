@@ -1,0 +1,99 @@
+
+# File Byte-compiled / optimal / DLL
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Ekstensi C
+*.so
+
+# Distribusi / pemaketan
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+# Biasanya file ini ditulis oleh skrip python dari template
+# sebelum PyInstaller membangun exe, untuk menyisipkan tanggal/info lainnya.
+*.manifest
+*.spec
+
+# Log Installer
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / laporan coverage
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+cover/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# pyenv
+.python-version
+
+# celery
+celerybeat-schedule
+celerybeat.pid
+
+# File SageMath yang di-parse
+*.sage.py
+
+# Environment (Lingkungan Virtual)
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Pengaturan proyek Spyder
+.spyderproject
+.spyproject
+
+# Pengaturan proyek Rope
+.ropeproject
+
+# Dokumentasi mkdocs
+/site
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pemeriksa tipe Pyre
+.pyre/
+
+# vscode
+.vscode/
+
+# MacOS
+.DS_Store

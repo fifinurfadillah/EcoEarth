@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - EcoEarth</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        body { font-family: 'Poppins', sans-serif; }
+        
+        /* Background Pattern Halus */
+        .bg-pattern {
+            background-color: #f0fdf4; /* Mint Muda */
+            background-image: radial-gradient(#22c55e 0.5px, transparent 0.5px);
+            background-size: 20px 20px;
+        }
+
+        /* Style untuk tombol bahasa aktif */
+        .lang-active {
+            color: #16a34a !important; /* Hijau */
+            font-weight: 800 !important;
+            border-bottom: 2px solid #16a34a;
+        }
+    </style>
+</head>
+
+<body class="bg-pattern min-h-screen flex items-center justify-center p-4 relative">
+
+    <a href="{{ url_for('landing') }}" class="absolute top-6 left-6 flex items-center gap-2 text-gray-400 hover:text-green-600 transition font-medium text-sm z-20">
+        <i class="fa-solid fa-arrow-left"></i> 
+        <span data-en="Back to Home" data-id="Kembali ke Beranda">Back to Home</span>
+    </a>
+
+    <div class="absolute top-6 right-6 flex gap-3 text-sm font-bold text-gray-400 z-20 bg-white/80 px-4 py-2 rounded-full shadow-sm backdrop-blur-sm">
+        <button onclick="setLanguage('id')" id="btn-id" class="hover:text-green-600 transition">ID</button>
+        <span>|</span>
+        <button onclick="setLanguage('en')" id="btn-en" class="hover:text-green-600 transition">EN</button>
+    </div>
+
+    <div class="bg-white w-full max-w-[400px] rounded-[30px] shadow-2xl overflow-hidden border border-green-100 relative z-10">
+        
+        <div class="bg-green-50 p-8 pb-6 text-center border-b border-green-100">
+            <div class="w-14 h-14 bg-green-500 rounded-2xl flex items-center justify-center text-white text-2xl shadow-green-200 shadow-lg mx-auto mb-3 transform rotate-3 hover:rotate-0 transition">
+                <i class="fa-solid fa-leaf"></i>
+            </div>
+            <h1 class="text-xl font-bold text-green-700 tracking-wide">EcoEarth</h1>
+            <p class="text-xs text-green-600 font-medium" data-en="Intelligent Waste Classification" data-id="Klasifikasi Sampah Cerdas">Intelligent Waste Classification</p>
+        </div>
+
+        <div class="p-8 pt-6">
+            <h2 class="text-xl font-bold text-gray-800 text-center mb-6" data-en="Hi, Welcome Back! 👋" data-id="Halo, Selamat Datang! 👋">Hi, Welcome Back! 👋</h2>
+            
+            {% if error %}
+            <div class="bg-red-50 border border-red-200 text-red-500 text-xs p-3 rounded-xl mb-4 flex items-center gap-2">
+                <i class="fa-solid fa-circle-exclamation"></i> {{ error }}
+            </div>
+            {% endif %}
+
+            <form method="POST" action="{{ url_for('login_page') }}" class="space-y-5">
+                
+                <div>
+                    <label class="block text-xs font-bold text-gray-500 uppercase mb-2 ml-1" data-en="Email Address" data-id="Alamat Email">Email Address</label>
+                    <div class="relative group">
+                        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-gray-400 group-focus-within:text-green-500 transition">
+                            <i class="fa-solid fa-envelope"></i>
+                        </div>
+                        <input type="text" name="username" required 
+                            class="w-full pl-11 pr-4 py-3 bg-gray-50 rounded-xl border border-gray-100 focus:bg-white focus:border-green-500 focus:ring-4 focus:ring-green-100 outline-none transition text-sm font-medium text-gray-700"
+                            placeholder="you@example.com"
+                            data-placeholder-en="you@example.com" 
+                            data-placeholder-id="email@contoh.com">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-gray-500 uppercase mb-2 ml-1" data-en="Password" data-id="Kata Sandi">Password</label>
+                    <div class="relative group">
+                        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-gray-400 group-focus-within:text-green-500 transition">
+                            <i class="fa-solid fa-lock"></i>
+                        </div>
+                        <input type="password" name="password" id="passwordInput" required 
+                            class="w-full pl-11 pr-10 py-3 bg-gray-50 rounded-xl border border-gray-100 focus:bg-white focus:border-green-500 focus:ring-4 focus:ring-green-100 outline-none transition text-sm font-medium text-gray-700"
+                            placeholder="Enter password"
+                            data-placeholder-en="Enter password" 
+                            data-placeholder-id="Masukkan kata sandi">
+                        
+                        <div onclick="togglePassword()" class="absolute inset-y-0 right-0 pr-4 flex items-center cursor-pointer text-gray-400 hover:text-green-600 transition">
+                            <i class="fa-solid fa-eye" id="eyeIcon"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex justify-end">
+                    <a href="#" class="text-xs font-semibold text-green-600 hover:text-green-700 transition" data-en="Forgot Password?" data-id="Lupa Kata Sandi?">Forgot Password?</a>
+                </div>
+
+                <button type="submit" class="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-bold py-3.5 rounded-xl shadow-lg shadow-green-200 transition transform hover:-translate-y-0.5 active:scale-95">
+                    <span data-en="Sign In" data-id="Masuk">Sign In</span> <i class="fa-solid fa-arrow-right ml-2"></i>
+                </button>
+
+            </form>
+
+            <div class="relative mt-8 mb-6">
+                <div class="absolute inset-0 flex items-center">
+                    <div class="w-full border-t border-gray-100"></div>
+                </div>
+                <div class="relative flex justify-center text-xs uppercase">
+                    <span class="px-3 bg-white text-gray-400 font-medium" data-en="or" data-id="atau">or</span>
+                </div>
+            </div>
+
+            <p class="text-center text-xs text-gray-500 font-medium">
+                <span data-en="Don't have an account?" data-id="Belum punya akun?">Don't have an account?</span>
+                <a href="#" class="text-green-600 hover:underline font-bold ml-1" data-en="Sign Up" data-id="Daftar Sekarang">Sign Up</a>
+            </p>
+        </div>
+    </div>
+
+    <div class="absolute bottom-4 text-center w-full text-[10px] text-gray-400 font-medium tracking-wide">
+        © 2026 ECOEARTH PROJECT.
+    </div>
+
+    <script>
+        // 1. Script Ganti Bahasa (Multi-Language)
+        function setLanguage(lang) {
+            // Ubah Teks Biasa
+            document.querySelectorAll('[data-' + lang + ']').forEach(el => {
+                el.innerText = el.getAttribute('data-' + lang);
+            });
+            // Ubah Placeholder Input
+            document.querySelectorAll('[data-placeholder-' + lang + ']').forEach(el => {
+                el.setAttribute('placeholder', el.getAttribute('data-placeholder-' + lang));
+            });
+
+            // Ubah Style Tombol Aktif
+            const btnEn = document.getElementById('btn-en');
+            const btnId = document.getElementById('btn-id');
+            
+            if(lang === 'en') {
+                btnEn.classList.add('lang-active');
+                btnId.classList.remove('lang-active');
+            } else {
+                btnId.classList.add('lang-active');
+                btnEn.classList.remove('lang-active');
+            }
+
+            // Simpan Pilihan
+            localStorage.setItem('ecoearth_lang', lang);
+        }
+
+        // Load Bahasa Tersimpan saat refresh
+        const savedLang = localStorage.getItem('ecoearth_lang') || 'en';
+        setLanguage(savedLang);
+
+        // 2. Script Lihat Password (Eye Toggle)
+        function togglePassword() {
+            const input = document.getElementById('passwordInput');
+            const icon = document.getElementById('eyeIcon');
+            if (input.type === "password") {
+                input.type = "text";
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                input.type = "password";
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        }
+    </script>
+
+</body>
+</html>
